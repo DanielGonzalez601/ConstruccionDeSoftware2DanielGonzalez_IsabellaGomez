@@ -1,8 +1,8 @@
 # Construcción De Software 2
 **Horario de la materia:** Lunes y Miércoles de **8:00PM- 10:00PM**.
 ## Integrantes del Equipo
-- [Isabella Gómez Parra.]()
-- [Daniel Eduardo Gonzalez Palacio.]()
+- [Isabella Gómez Parra.](https://github.com/IsabellaGomezP)
+- [Daniel Eduardo Gonzalez Palacio.](https://github.com/DanielGonzalez601)
 
 ## Tecnologías del Proyecto
 - Java Spring Boot
@@ -22,4 +22,4 @@ La arquitectura del sistema está basada en el enfoque Domain-Driven Design (DDD
 
 1. *Clona el Repositorio, con el siguiente comando:*
  ```bash
- git clone 
+ git clone https://github.com/DanielGonzalez601/ConstruccionDeSoftware2DanielGonzalez_IsabellaGomez.git
