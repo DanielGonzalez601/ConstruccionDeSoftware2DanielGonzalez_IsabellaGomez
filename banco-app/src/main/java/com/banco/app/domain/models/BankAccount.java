@@ -2,6 +2,7 @@ package com.banco.app.domain.models;
 
 import com.banco.app.domain.enums.AccountStatus;
 import com.banco.app.domain.enums.TypeAccounts;
+import com.banco.app.domain.exceptions.BusinessException;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,20 @@ public class BankAccount {
         this.currentBalance = 0.0;
         this.status = AccountStatus.ACTIVE;
         this.openingDate = LocalDate.now();
+    }
+
+    // VALIDACIONES DEL DOMINIO
+
+    private void validateAccountNumber(String accountNumber) {
+        if (accountNumber == null || accountNumber.isEmpty()) {
+            throw new BusinessException("El número de cuenta es obligatorio.");
+        }
+    }
+
+    private void validateAccountType(TypeAccounts accountType) {
+        if (accountType == null) {
+            throw new BusinessException("El tipo de cuenta es obligatorio.");
+        }
     }
 
     @Override

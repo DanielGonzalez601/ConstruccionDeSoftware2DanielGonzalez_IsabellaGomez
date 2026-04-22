@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Transfer {
 
-    private String transferId;
+    private int transferId;
     private String originAccount;
     private String destinationAccount;
     private double amount;
@@ -21,7 +21,7 @@ public class Transfer {
     private String creatorUserId;
     private String approverUserId;
 
-    public Transfer(String transferId, String originAccount,
+    public Transfer(int transferId, String originAccount,
                     String destinationAccount, double amount,
                     LocalDateTime creationDate, LocalDateTime approvalDate,
                     TransferStatus status, String creatorUserId,

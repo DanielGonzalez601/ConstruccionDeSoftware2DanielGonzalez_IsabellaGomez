@@ -3,6 +3,7 @@
 ## Integrantes del Equipo
 - [Isabella Gómez Parra.](https://github.com/IsabellaGomezP)
 - [Daniel Eduardo Gonzalez Palacio.](https://github.com/DanielGonzalez601)
+- [Yorlando David Montiel Guerra]()
 
 ## Tecnologías del Proyecto
 - Java Spring Boot
