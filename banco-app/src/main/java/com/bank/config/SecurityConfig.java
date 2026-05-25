@@ -15,12 +15,12 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 
 /**
- * CONFIG - SecurityConfig
- *
- * Configures Spring Security with stateless JWT authentication.
- * Public endpoints: /api/auth/**, /swagger-ui/**, /h2-console/**, /api-docs/**
- * All other endpoints require a valid JWT token.
- */
+* CONFIG - SecurityConfig
+*
+* Configura Spring Security con autenticación JWT sin estado.
+* Puntos finales públicos: /api/auth/**, /swagger-ui/**, /h2-console/**, /api-docs/**
+* Todos los demás puntos finales requieren un token JWT válido.
+*/
 @Configuration
 @EnableWebSecurity
 @SecurityScheme(
@@ -41,7 +41,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
             .csrf(AbstractHttpConfigurer::disable)
-            .headers(headers -> headers.frameOptions(frame -> frame.disable())) // for H2 console
+            .headers(headers -> headers.frameOptions(frame -> frame.disable())) // para consola H2
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(

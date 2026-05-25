@@ -5,12 +5,12 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * DOMAIN ENTITY - AuditLog
- *
- * Represents an immutable record of a significant operation in the system.
- * Stored in a NoSQL-like fashion (JSON document in detail field).
- * Once created, audit logs cannot be modified.
- */
+* ENTIDAD DE DOMINIO - Registro de auditoría
+*
+* Representa un registro inmutable de una operación importante en el sistema.
+* Se almacena de forma similar a NoSQL (documento JSON en el campo de detalles).
+* Una vez creados, los registros de auditoría no se pueden modificar.
+*/
 public class AuditLog {
 
     private String logId;
@@ -24,7 +24,7 @@ public class AuditLog {
     private AuditLog() {}
 
     /**
-     * Factory — creates an immutable audit log entry.
+     * Fábrica: crea una entrada de registro de auditoría inmutable.
      */
     public static AuditLog record(String operationType, Long userId, String userRole,
                                     String affectedProductId, Map<String, Object> detailData) {

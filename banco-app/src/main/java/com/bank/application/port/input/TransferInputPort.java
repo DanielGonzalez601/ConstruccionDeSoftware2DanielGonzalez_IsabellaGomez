@@ -4,9 +4,9 @@ import com.bank.application.dto.BankingDto.*;
 import java.util.List;
 
 /**
- * APPLICATION INPUT PORT - TransferInputPort
- * Defines transfer operations including approval flow.
- */
+* PUERTO DE ENTRADA DE LA APLICACIÓN - TransferInputPort
+* Define las operaciones de transferencia, incluido el flujo de aprobación.
+*/
 public interface TransferInputPort {
     TransferResponse createTransfer(CreateTransferCommand command);
     TransferResponse approveTransfer(Long transferId);

@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 /**
- * DOMAIN AGGREGATE ROOT - Transfer
- *
- * Represents a fund transfer between accounts.
- * Enforces approval flow for high-value company transfers
- * and auto-expiry after 60 minutes without approval.
- */
+* RAÍZ DE AGREGADO DE DOMINIO - Transferencia
+*
+* Representa una transferencia de fondos entre cuentas.
+* Aplica un flujo de aprobación para transferencias de alto valor entre empresas.
+* y expira automáticamente después de 60 minutos sin aprobación.
+*/
 public class Transfer {
 
     private Long id;
@@ -29,9 +29,9 @@ public class Transfer {
     private Transfer() {}
 
     /**
-     * Reconstitution factory — restores a Transfer from persistence.
-     * Used ONLY by the persistence mapper.
-     */
+    * Reconstitution factory : restaura una transferencia desde la persistencia.
+    * Utilizado ÚNICAMENTE por el mapeador de persistencia.
+    */
     public static Transfer reconstitute(Long id, String sourceAccount, String destinationAccount,
                                          Money amount, TransferStatus status,
                                          java.time.LocalDateTime creationDateTime,
@@ -51,8 +51,8 @@ public class Transfer {
     }
 
     /**
-     * Factory — creates a transfer that executes immediately (no approval needed).
-     */
+    * Fábrica: crea una transferencia que se ejecuta inmediatamente (no requiere aprobación).
+    */
     public static Transfer createDirect(String sourceAccount, String destinationAccount,
                                          Money amount, Long creatorUserId) {
         Transfer t = buildTransfer(sourceAccount, destinationAccount, amount, creatorUserId);
@@ -62,7 +62,7 @@ public class Transfer {
     }
 
     /**
-     * Factory — creates a transfer pending supervisor approval.
+     * Fábrica: crea una transferencia pendiente de aprobación del supervisor.
      */
     public static Transfer createPendingApproval(String sourceAccount, String destinationAccount,
                                                    Money amount, Long creatorUserId) {
@@ -89,7 +89,7 @@ public class Transfer {
         return t;
     }
 
-    // ============ Business Rules ============
+    // ============ Reglas de negocio ============
 
     public void approve(Long approverUserId) {
         assertPendingApproval();

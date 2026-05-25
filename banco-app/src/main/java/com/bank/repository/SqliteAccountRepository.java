@@ -39,7 +39,7 @@ public class SqliteAccountRepository implements AccountRepository {
             ps.setString(7, account.getOpeningDate().toString());
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error saving account", e);
+            throw new RuntimeException("Error al guardar la cuenta", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class SqliteAccountRepository implements AccountRepository {
             if (rs.next()) return Optional.of(mapRow(rs));
             return Optional.empty();
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding account", e);
+            throw new RuntimeException("Error al buscar la cuenta", e);
         }
     }
 
@@ -66,7 +66,7 @@ public class SqliteAccountRepository implements AccountRepository {
             while (rs.next()) list.add(mapRow(rs));
             return list;
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding accounts by owner", e);
+            throw new RuntimeException("Error al buscar cuentas por propietario", e);
         }
     }
 
@@ -78,7 +78,7 @@ public class SqliteAccountRepository implements AccountRepository {
             while (rs.next()) list.add(mapRow(rs));
             return list;
         } catch (SQLException e) {
-            throw new RuntimeException("Error listing accounts", e);
+            throw new RuntimeException("Error al listar cuentas", e);
         }
     }
 
@@ -90,7 +90,7 @@ public class SqliteAccountRepository implements AccountRepository {
             ResultSet rs = ps.executeQuery();
             return rs.next() && rs.getInt(1) > 0;
         } catch (SQLException e) {
-            throw new RuntimeException("Error checking account existence", e);
+            throw new RuntimeException("Error al verificar la existencia de la cuenta", e);
         }
     }
 

@@ -20,7 +20,7 @@ public class UserService {
     public User createUser(User user, String plainPassword) {
         validateUser(user);
         if (userRepo.existsByIdentification(user.getIdentificationNumber()))
-            throw new DomainException("Identification number already exists: " + user.getIdentificationNumber());
+            throw new DomainException("El número de identificación ya existe: " + user.getIdentificationNumber());
         user.setPasswordHash(AuthService.hashPassword(plainPassword));
         if (user.getStatus() == null) user.setStatus(UserStatus.ACTIVE);
         return userRepo.save(user);
@@ -29,7 +29,7 @@ public class UserService {
     public User updateUserStatus(int userId, UserStatus newStatus) {
         AuthService.requireRole(UserRole.INTERNAL_ANALYST, UserRole.COMPANY_SUPERVISOR);
         User user = userRepo.findById(userId)
-            .orElseThrow(() -> new DomainException("User not found: " + userId));
+            .orElseThrow(() -> new DomainException("Usuario no encontrado: " + userId));
         user.setStatus(newStatus);
         return userRepo.save(user);
     }
@@ -53,22 +53,22 @@ public class UserService {
 
     private void validateUser(User user) {
         if (user.getFullName() == null || user.getFullName().isBlank())
-            throw new DomainException("Full name is required.");
+            throw new DomainException("El nombre completo es requerido.");
         if (user.getIdentificationNumber() == null || user.getIdentificationNumber().isBlank())
-            throw new DomainException("Identification number is required.");
+            throw new DomainException("El número de identificación es requerido.");
         if (user.getEmail() == null || !user.getEmail().contains("@") || !user.getEmail().contains("."))
-            throw new DomainException("Valid email is required.");
+            throw new DomainException("El correo electrónico es requerido.");
         if (user.getPhone() == null || user.getPhone().length() < 7 || user.getPhone().length() > 15)
-            throw new DomainException("Phone must be 7-15 digits.");
+            throw new DomainException("El teléfono debe tener entre 7 y 15 dígitos.");
         if (user.getAddress() == null || user.getAddress().isBlank())
-            throw new DomainException("Address is required.");
+            throw new DomainException("La dirección es requerida.");
         if (user.getRole() == null)
-            throw new DomainException("Role is required.");
+            throw new DomainException("El rol es requerido.");
         if (user.getRole() == UserRole.CLIENT_INDIVIDUAL) {
             if (user.getBirthDate() == null)
-                throw new DomainException("Birth date is required for individual clients.");
+                throw new DomainException("La fecha de nacimiento es requerida para clientes individuales.");
             if (Period.between(user.getBirthDate(), LocalDate.now()).getYears() < 18)
-                throw new DomainException("Client must be at least 18 years old.");
+                throw new DomainException("El cliente debe tener al menos 18 años.");
         }
     }
 }

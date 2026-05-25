@@ -35,11 +35,11 @@ public class TransferService {
 
         if (current.hasRole(UserRole.CLIENT_INDIVIDUAL)) {
             if (!source.getOwnerId().equals(current.getIdentificationNumber()))
-                throw new DomainException("You can only transfer from your own accounts.");
+                throw new DomainException("Solo puedes transferir desde tus propias cuentas.");
         }
         if (current.hasRole(UserRole.COMPANY_EMPLOYEE)) {
             if (!source.getOwnerId().equals(current.getCompanyId()))
-                throw new DomainException("You can only transfer from your company's accounts.");
+                throw new DomainException("Solo puedes transferir desde las cuentas de tu empresa.");
         }
 
         Money transferAmount = new Money(amount, source.getBalance().getCurrency());
@@ -52,7 +52,7 @@ public class TransferService {
         if (needsApproval) {
             transferRepo.save(transfer);
             eventPublisher.publishAll(transfer.pullDomainEvents());
-            System.out.printf("[TRANSFER] Created PENDING APPROVAL. ID: %d | Amount: %s%n",
+            System.out.printf("[TRANSFER] Creado PENDIENTE DE APROBACIÓN. ID: %d | Cantidad: %s%n",
                     transfer.getTransferId(), transferAmount);
         } else {
             // Mover fondos a través del aggregate
@@ -66,7 +66,7 @@ public class TransferService {
             eventPublisher.publishAll(transfer.pullDomainEvents());
             eventPublisher.publishAll(source.pullDomainEvents());
             eventPublisher.publishAll(destination.pullDomainEvents());
-            System.out.printf("[TRANSFER] EXECUTED. ID: %d | Amount: %s | %s → %s%n",
+            System.out.printf("[TRANSFER] EJECUTADO. ID: %d | Cantidad: %s | %s → %s%n",
                     transfer.getTransferId(), transferAmount, sourceAccountNumber, destinationAccountNumber);
         }
 
@@ -83,7 +83,7 @@ public class TransferService {
 
         if (current.hasRole(UserRole.COMPANY_SUPERVISOR)) {
             if (!source.getOwnerId().equals(current.getCompanyId()))
-                throw new DomainException("You can only approve transfers from your company's accounts.");
+                throw new DomainException("Solo puedes aprobar transferencias de las cuentas de tu empresa.");
         }
 
         source.withdraw(transfer.getAmount());
@@ -130,7 +130,7 @@ public class TransferService {
         if (current.hasRole(UserRole.CLIENT_INDIVIDUAL)) {
             BankAccount acc = loadAccount(accountNumber);
             if (!acc.getOwnerId().equals(current.getIdentificationNumber()))
-                throw new DomainException("You can only view transfers for your own accounts.");
+                throw new DomainException("Solo puedes ver las transferencias de tus propias cuentas.");
         }
         return transferRepo.findBySourceOrDestinationAccount(accountNumber);
     }
@@ -152,11 +152,11 @@ public class TransferService {
 
     private Transfer loadTransfer(int transferId) {
         return transferRepo.findById(transferId)
-            .orElseThrow(() -> new DomainException("Transfer not found: " + transferId));
+            .orElseThrow(() -> new DomainException("Transferencia no encontrada: " + transferId));
     }
 
     private BankAccount loadAccount(String accountNumber) {
         return accountRepo.findByAccountNumber(accountNumber)
-            .orElseThrow(() -> new DomainException("Account not found: " + accountNumber));
+            .orElseThrow(() -> new DomainException("Cuenta no encontrada: " + accountNumber));
     }
 }

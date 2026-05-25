@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * ADAPTER (Driving) - LoanController
- * REST controller for loan lifecycle operations.
- */
+* ADAPTADOR (Controlador) - LoanController
+* Controlador REST para las operaciones del ciclo de vida del préstamo.
+*/
 @RestController
 @RequestMapping("/api/loans")
-@Tag(name = "Loans", description = "Loan request, approval, and disbursement flow")
+@Tag(name = "Loans", description = "Proceso de solicitud, aprobación y desembolso de préstamos.")
 @SecurityRequirement(name = "bearerAuth")
 public class LoanController {
 
@@ -28,61 +28,61 @@ public class LoanController {
     }
 
     @PostMapping
-    @Operation(summary = "Request a loan",
+    @Operation(summary = "Solicita un préstamo",
         description = "Roles: CLIENT_INDIVIDUAL, CLIENT_COMPANY, COMMERCIAL_EMPLOYEE, INTERNAL_ANALYST. " +
             "Employees must provide clientIdentificationNumber.")
     public ResponseEntity<ApiResponse<LoanResponse>> requestLoan(
             @Valid @RequestBody RequestLoanCommand command) {
         return ResponseEntity.status(201)
-            .body(ApiResponse.ok("Loan request submitted", loanInputPort.requestLoan(command)));
+            .body(ApiResponse.ok("Solicitud de préstamo enviada", loanInputPort.requestLoan(command)));
     }
 
     @GetMapping
-    @Operation(summary = "Get all loans", description = "Roles: INTERNAL_ANALYST, COMMERCIAL_EMPLOYEE")
+    @Operation(summary = "Obtener todos los préstamos", description = "Roles: INTERNAL_ANALYST, COMMERCIAL_EMPLOYEE")
     public ResponseEntity<ApiResponse<List<LoanResponse>>> getAllLoans() {
-        return ResponseEntity.ok(ApiResponse.ok("Loans retrieved", loanInputPort.getAllLoans()));
+        return ResponseEntity.ok(ApiResponse.ok("Préstamos recuperados.", loanInputPort.getAllLoans()));
     }
 
     @GetMapping("/status/{status}")
-    @Operation(summary = "Get loans by status",
-        description = "Status values: UNDER_REVIEW, APPROVED, REJECTED, DISBURSED")
+    @Operation(summary = "Obtener préstamos por estado",
+        description = "Valores de estado: UNDER_REVIEW, APPROVED, REJECTED, DISBURSED")
     public ResponseEntity<ApiResponse<List<LoanResponse>>> getByStatus(@PathVariable String status) {
-        return ResponseEntity.ok(ApiResponse.ok("Loans retrieved", loanInputPort.getLoansByStatus(status)));
+        return ResponseEntity.ok(ApiResponse.ok("Préstamos recuperados.", loanInputPort.getLoansByStatus(status)));
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get loan by ID")
+    @Operation(summary = "Obtener préstamo por ID")
     public ResponseEntity<ApiResponse<LoanResponse>> getLoanById(@PathVariable Long id) {
-        return ResponseEntity.ok(ApiResponse.ok("Loan found", loanInputPort.getLoanById(id)));
+        return ResponseEntity.ok(ApiResponse.ok("Préstamo encontrado.", loanInputPort.getLoanById(id)));
     }
 
     @GetMapping("/client/{clientIdentificationNumber}")
-    @Operation(summary = "Get loans by client identification number")
+    @Operation(summary = "Obtener préstamos por número de identificación del cliente")
     public ResponseEntity<ApiResponse<List<LoanResponse>>> getByClient(
             @PathVariable String clientIdentificationNumber) {
-        return ResponseEntity.ok(ApiResponse.ok("Loans retrieved",
+        return ResponseEntity.ok(ApiResponse.ok("Préstamos recuperados.",
             loanInputPort.getLoansByClient(clientIdentificationNumber)));
     }
 
     @PostMapping("/{id}/approve")
-    @Operation(summary = "Approve a loan", description = "INTERNAL_ANALYST only")
+    @Operation(summary = "Aprobar un préstamo", description = "INTERNAL_ANALYST only")
     public ResponseEntity<ApiResponse<LoanResponse>> approveLoan(
             @PathVariable Long id,
             @Valid @RequestBody ApproveLoanCommand command) {
-        return ResponseEntity.ok(ApiResponse.ok("Loan approved", loanInputPort.approveLoan(id, command)));
+        return ResponseEntity.ok(ApiResponse.ok("Préstamo aprobado.", loanInputPort.approveLoan(id, command)));
     }
 
     @PostMapping("/{id}/reject")
-    @Operation(summary = "Reject a loan", description = "INTERNAL_ANALYST only")
+    @Operation(summary = "Rechazar un préstamo", description = "INTERNAL_ANALYST only")
     public ResponseEntity<ApiResponse<LoanResponse>> rejectLoan(
             @PathVariable Long id,
             @Valid @RequestBody RejectLoanCommand command) {
-        return ResponseEntity.ok(ApiResponse.ok("Loan rejected", loanInputPort.rejectLoan(id, command)));
+        return ResponseEntity.ok(ApiResponse.ok("Préstamo rechazado.", loanInputPort.rejectLoan(id, command)));
     }
 
     @PostMapping("/{id}/disburse")
-    @Operation(summary = "Disburse an approved loan", description = "INTERNAL_ANALYST only")
+    @Operation(summary = "Desembolsar un préstamo aprobado", description = "INTERNAL_ANALYST only")
     public ResponseEntity<ApiResponse<LoanResponse>> disburseLoan(@PathVariable Long id) {
-        return ResponseEntity.ok(ApiResponse.ok("Loan disbursed", loanInputPort.disburseLoan(id)));
+        return ResponseEntity.ok(ApiResponse.ok("Préstamo desembolsado.", loanInputPort.disburseLoan(id)));
     }
 }

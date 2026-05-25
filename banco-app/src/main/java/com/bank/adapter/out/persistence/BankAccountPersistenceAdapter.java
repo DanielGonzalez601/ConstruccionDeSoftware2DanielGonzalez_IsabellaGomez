@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * INFRASTRUCTURE ADAPTER - BankAccountPersistenceAdapter
- * Implements BankAccountRepositoryPort using Spring Data JPA.
- */
+* ADAPTADOR DE INFRAESTRUCTURA - BankAccountPersistenceAdapter
+* Implementa BankAccountRepositoryPort usando Spring Data JPA.
+*/
 @Component
 public class BankAccountPersistenceAdapter implements BankAccountRepositoryPort {
 

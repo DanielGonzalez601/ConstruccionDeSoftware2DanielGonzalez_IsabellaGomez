@@ -5,10 +5,10 @@ import com.bank.domain.model.entity.User;
 import org.springframework.stereotype.Component;
 
 /**
- * INFRASTRUCTURE MAPPER - UserPersistenceMapper
- * Uses User.reconstitute() for safe loading from DB.
- * Uses User.create() only for brand-new registrations (via UserUseCase).
- */
+* MAPEO DE INFRAESTRUCTURA - UserPersistenceMapper
+* Utiliza User.reconstitute() para una carga segura desde la base de datos.
+* Utiliza User.create() únicamente para registros nuevos (a través de UserUseCase).
+*/
 @Component
 public class UserPersistenceMapper {
 

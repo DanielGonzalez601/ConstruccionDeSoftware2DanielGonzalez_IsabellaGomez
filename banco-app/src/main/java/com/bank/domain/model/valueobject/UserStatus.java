@@ -1,7 +1,7 @@
 package com.bank.domain.model.valueobject;
 
 /**
- * Value Object - Represents the lifecycle status of a user account.
+ * Value Object - representa el estado del ciclo de vida de una cuenta de usuario.
  */
 public enum UserStatus {
     ACTIVE, 

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * AGGREGATE ROOT — Cuenta Bancaria (DDD).
  *
- * Encapsula todas las reglas de negocio de una cuenta.
+ * Encapsula todas las reglas de negocio de una cuenta. 
  * Nadie puede modificar el saldo sin pasar por sus métodos.
  */
 public class BankAccount {

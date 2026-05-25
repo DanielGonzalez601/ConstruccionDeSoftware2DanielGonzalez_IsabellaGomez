@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * INFRASTRUCTURE ADAPTER (Driven Adapter) - UserPersistenceAdapter
- *
- * Implements the UserRepositoryPort (output port defined by Application layer).
- * Translates between Domain entities and JPA entities using the mapper.
- * This is where Spring Data JPA lives — completely outside the domain.
- */
+* ADAPTADOR DE INFRAESTRUCTURA (Adaptador controlado) - UserPersistenceAdapter
+*
+* Implementa UserRepositoryPort (puerto de salida definido por la capa de aplicación).
+* Realiza la traducción entre entidades de dominio y entidades JPA mediante el mapeador.
+* Aquí es donde reside Spring Data JPA, completamente fuera del dominio.
+*/
 @Component
 public class UserPersistenceAdapter implements UserRepositoryPort {
 

@@ -4,9 +4,9 @@ import com.bank.domain.model.entity.AuditLog;
 import java.util.List;
 
 /**
- * APPLICATION OUTPUT PORT - AuditLogRepositoryPort
- * Abstracts persistence for AuditLog (NoSQL document store).
- */
+* PUERTO DE SALIDA DE LA APLICACIÓN - AuditLogRepositoryPort
+* Abstrae la persistencia para AuditLog (almacén de documentos NoSQL).
+*/
 public interface AuditLogRepositoryPort {
     AuditLog save(AuditLog auditLog);
     List<AuditLog> findAll();

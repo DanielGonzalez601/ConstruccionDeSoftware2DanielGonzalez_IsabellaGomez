@@ -9,12 +9,12 @@ import com.bank.domain.model.valueobject.Money;
 import java.math.BigDecimal;
 
 /**
- * DOMAIN SERVICE - TransferDomainService
- *
- * Contains business logic that spans multiple aggregates (Transfer + BankAccount).
- * A domain service is used when a rule doesn't naturally belong to a single entity.
- * No Spring, JPA, or infrastructure dependencies.
- */
+* SERVICIO DE DOMINIO - TransferDomainService
+*
+* Contiene lógica de negocio que abarca múltiples agregados (Transferencia + Cuenta bancaria).
+* Se utiliza un servicio de dominio cuando una regla no pertenece naturalmente a una sola entidad.
+* No tiene dependencias de Spring, JPA ni de infraestructura.
+*/
 public class TransferDomainService {
 
     private final BigDecimal approvalThreshold;
@@ -24,16 +24,16 @@ public class TransferDomainService {
     }
 
     /**
-     * Business rule: Company employee transfers above threshold require approval.
-     */
+    * Regla de negocio: Las transferencias de empleados de la empresa que superen un umbral determinado requieren aprobación.
+    */
     public boolean requiresApproval(Money amount, boolean isCompanyEmployee) {
         if (!isCompanyEmployee) return false;
         return amount.getAmount().compareTo(approvalThreshold) > 0;
     }
 
     /**
-     * Executes the actual debit/credit between accounts.
-     * Validates sufficient funds before moving money.
+     * Regla de negocio: Ejecuta la transacción de débito/crédito entre cuentas.
+     * Valida fondos suficientes antes de mover dinero.
      */
     public void executeTransfer(Transfer transfer, BankAccount source, BankAccount destination) {
         if (!source.isOperable()) {
@@ -50,7 +50,7 @@ public class TransferDomainService {
     }
 
     /**
-     * Business rule: Validates that a transfer hasn't expired before approval.
+     * Regla de negocio: Valida que una transferencia no haya expirado antes de su aprobación.
      */
     public void validateNotExpired(Transfer transfer) {
         if (transfer.isExpired()) {

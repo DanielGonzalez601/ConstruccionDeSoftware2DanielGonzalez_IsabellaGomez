@@ -6,9 +6,9 @@ import com.bank.domain.model.valueobject.Money;
 import org.springframework.stereotype.Component;
 
 /**
- * INFRASTRUCTURE MAPPER - BankAccountPersistenceMapper
- * Uses BankAccount.reconstitute() to restore from DB safely.
- */
+* MAPEO DE INFRAESTRUCTURA - BankAccountPersistenceMapper
+* Utiliza BankAccount.reconstitute() para restaurar desde la base de datos de forma segura.
+*/
 @Component
 public class BankAccountPersistenceMapper {
 

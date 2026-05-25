@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * DOMAIN REPOSITORY INTERFACE (Output Port at Domain Level)
- *
- * Defines what persistence operations the domain needs.
- * The implementation lives in the Infrastructure layer.
- * This interface has NO dependency on JPA, SQL, or any framework.
- */
+* INTERFAZ DE REPOSITORIO DE DOMINIO (Output Port at Domain Level)
+*
+* Define las operaciones de persistencia que necesita el dominio.
+* La implementación reside en la capa de infraestructura.
+* Esta interfaz NO depende de JPA, SQL ni de ningún otro framework.
+*/
 public interface UserRepository {
 
     User save(User user);

@@ -5,16 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * BANK MANAGEMENT SYSTEM
- * Architecture: Hexagonal (Ports and Adapters) + DDD
- *
- * Layers:
- *   domain/          → Pure business logic, no framework dependencies
- *   application/     → Use cases, Input/Output Ports, DTOs
- *   adapter/in/web/  → REST Controllers (Driving Adapters)
- *   adapter/out/     → JPA Persistence (Driven Adapters)
- *   config/          → Spring wiring, Security, Exception handling
- */
+* SISTEMA DE GESTIÓN BANCARIA
+* Arquitectura: Hexagonal (Puertos y Adaptadores) + DDD
+*
+* Capas:
+* domain/ → Lógica de negocio pura, sin dependencias de frameworks
+* application/ → Casos de uso, Puertos de entrada/salida, DTOs
+* adapter/in/web/ → Controladores REST (Adaptadores)
+* adapter/out/ → Persistencia JPA (Adaptadores controlados)
+* config/ → Conexión Spring, Seguridad, Manejo de excepciones
+*/
 @SpringBootApplication
 @EnableScheduling
 public class BankApplication {

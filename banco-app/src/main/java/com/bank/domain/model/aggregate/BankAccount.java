@@ -8,12 +8,12 @@ import com.bank.domain.model.valueobject.*;
 import java.time.LocalDate;
 
 /**
- * DOMAIN AGGREGATE ROOT - BankAccount
- *
- * Represents a bank account. This is the single entry point for all
- * balance-related operations. Business rules are enforced here.
- * No JPA or Spring dependencies.
- */
+* RAÍZ DE AGREGADO DE DOMINIO - BankAccount
+*
+* Representa una cuenta bancaria. Este es el único punto de entrada para todas las
+* operaciones relacionadas con el saldo. Aquí se aplican las reglas de negocio.
+* Sin dependencias de JPA ni Spring.
+*/
 public class BankAccount {
 
     private Long id;
@@ -27,8 +27,8 @@ public class BankAccount {
     private BankAccount() {}
 
     /**
-     * Reconstitution factory — restores a BankAccount from persistence.
-     * Used ONLY by the persistence mapper.
+     * Fábrica de reconstitución: restaura una cuenta bancaria desde la persistencia.
+     * Utilizado ÚNICAMENTE por el mapeador de persistencia.
      * @param id identificador único de la cuenta
      * @param accountNumber número de cuenta
      * @param accountType tipo de cuenta (SAVINGS, CHECKING)
@@ -53,7 +53,7 @@ public class BankAccount {
     }
 
     /**
-     * Domain factory method — creates a new bank account with zero balance.
+     * Fábrica de dominio: crea una nueva cuenta bancaria con saldo cero.
      * @param accountNumber número de cuenta
      * @param accountType tipo de cuenta (SAVINGS, CHECKING)
      * @param ownerId identificación del propietario
@@ -78,7 +78,7 @@ public class BankAccount {
         return account;
     }
 
-    // ============ Business Rules / Domain Operations ============
+    // ============ Reglas de negocio / Operaciones de dominio ============
 
     public void deposit(Money amount) {
         assertOperational();
@@ -97,7 +97,7 @@ public class BankAccount {
     }
 
     public void credit(Money amount) {
-        // Used for receiving transfers or loan disbursements
+        // Se utiliza para recibir transferencias o desembolsos de préstamos.
         assertNotCancelled();
         if (amount.isZeroOrNegative())
             throw new DomainValidationException("Se requiere monto positivo para acreditación.");

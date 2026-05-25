@@ -4,12 +4,12 @@ import com.bank.application.dto.UserDto.*;
 import java.util.List;
 
 /**
- * APPLICATION INPUT PORT - UserInputPort
- *
- * Defines the operations that external adapters (REST controllers, CLI, etc.)
- * can invoke on the application related to Users.
- * Controllers depend on this interface, NOT on concrete use case implementations.
- */
+* PUERTO DE ENTRADA DE LA APLICACIÓN - UserInputPort
+*
+* Define las operaciones que los adaptadores externos (controladores REST, CLI, etc.)
+* pueden invocar en la aplicación relacionada con los usuarios.
+* Los controladores dependen de esta interfaz, NO de implementaciones de casos de uso concretos.
+*/
 public interface UserInputPort {
     LoginResponse login(LoginCommand command);
     UserResponse registerUser(RegisterUserCommand command);

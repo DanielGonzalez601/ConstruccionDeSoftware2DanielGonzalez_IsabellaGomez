@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * INFRASTRUCTURE ADAPTER - LoanPersistenceAdapter
- * Implements LoanRepositoryPort using Spring Data JPA.
- */
+* ADAPTADOR DE INFRAESTRUCTURA - LoanPersistenceAdapter
+* Implementa LoanRepositoryPort usando Spring Data JPA.
+*/
 @Component
 public class LoanPersistenceAdapter implements LoanRepositoryPort {
 

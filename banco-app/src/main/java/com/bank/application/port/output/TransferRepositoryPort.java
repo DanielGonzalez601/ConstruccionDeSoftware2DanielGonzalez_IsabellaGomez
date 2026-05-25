@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * APPLICATION OUTPUT PORT - TransferRepositoryPort
- * Abstracts persistence for the Transfer aggregate.
- */
+* PUERTO DE SALIDA DE LA APLICACIÓN - TransferRepositoryPort
+* Abstrae la persistencia para el agregado Transfer.
+*/
 public interface TransferRepositoryPort {
     Transfer save(Transfer transfer);
     Optional<Transfer> findById(Long id);

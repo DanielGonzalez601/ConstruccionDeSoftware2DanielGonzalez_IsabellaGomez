@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * APPLICATION OUTPUT PORT - UserRepositoryPort
- *
- * The application layer communicates with persistence through this interface.
- * The Infrastructure layer provides the concrete implementation (JPA adapter).
- * This keeps the application independent of database technology.
- */
+* PUERTO DE SALIDA DE LA APLICACIÓN - UserRepositoryPort
+*
+* La capa de aplicación se comunica con la persistencia a través de esta interfaz.
+* La capa de infraestructura proporciona la implementación concreta (adaptador JPA).
+* Esto mantiene la aplicación independiente de la tecnología de base de datos.
+*/
 public interface UserRepositoryPort {
     User save(User user);
     Optional<User> findById(Long id);

@@ -6,9 +6,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import java.math.BigDecimal;
 
 /**
- * CONFIG - ApplicationProperties
- * Maps custom application properties from application.properties
- */
+* CONFIG - ApplicationProperties
+* Asigna propiedades personalizadas de la aplicación desde application.properties
+*/
 @ConfigurationProperties(prefix = "app")
 @EnableConfigurationProperties(ApplicationProperties.class)
 public class ApplicationProperties {

@@ -6,10 +6,10 @@ import com.bank.domain.model.valueobject.Money;
 import org.springframework.stereotype.Component;
 
 /**
- * INFRASTRUCTURE MAPPER - LoanPersistenceMapper
- * Uses Loan.reconstitute() to restore from DB — bypasses factory invariant checks
- * that are only relevant on creation, not on load.
- */
+* MAPEO DE INFRAESTRUCTURA - LoanPersistenceMapper
+* Utiliza Loan.reconstitute() para restaurar desde la base de datos; omite las comprobaciones de invariantes de fábrica
+* que solo son relevantes en la creación, no en la carga.
+*/
 @Component
 public class LoanPersistenceMapper {
 

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * INFRASTRUCTURE ADAPTER - AuditLogPersistenceAdapter
- * Implements AuditLogRepositoryPort — stores JSON documents in a relational DB.
- */
+* ADAPTADOR DE INFRAESTRUCTURA - AuditLogPersistenceAdapter
+* Implementa AuditLogRepositoryPort: almacena documentos JSON en una base de datos relacional.
+*/
 @Component
 public class AuditLogPersistenceAdapter implements AuditLogRepositoryPort {
 

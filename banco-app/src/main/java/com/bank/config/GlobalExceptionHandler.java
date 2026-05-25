@@ -19,11 +19,11 @@ import com.bank.domain.exception.InvalidTransferStateException;
 import com.bank.domain.exception.ResourceNotFoundException;
 
 /**
- * CONFIG - GlobalExceptionHandler
- *
- * Translates domain and application exceptions into HTTP responses.
- * This is part of the Interface layer — keeps error handling consistent across all controllers.
- */
+* CONFIG - GlobalExceptionHandler
+*
+* Traduce las excepciones de dominio y de la aplicación en respuestas HTTP.
+* Forma parte de la capa de interfaz y mantiene la coherencia en el manejo de errores en todos los controladores.
+*/
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

@@ -22,7 +22,7 @@ public class SqliteTransferRepository implements TransferRepository {
     public void save(Transfer transfer) {
         try {
             if (transfer.getTransferId() == 0) insert(transfer); else update(transfer);
-        } catch (SQLException e) { throw new RuntimeException("Error saving transfer", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al guardar la transferencia", e); }
     }
 
     private void insert(Transfer transfer) throws SQLException {
@@ -62,7 +62,7 @@ public class SqliteTransferRepository implements TransferRepository {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) return Optional.of(mapRow(rs));
             return Optional.empty();
-        } catch (SQLException e) { throw new RuntimeException("Error finding transfer", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar la transferencia", e); }
     }
 
     @Override
@@ -76,7 +76,7 @@ public class SqliteTransferRepository implements TransferRepository {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) list.add(mapRow(rs));
             return list;
-        } catch (SQLException e) { throw new RuntimeException("Error finding transfers", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar transferencias", e); }
     }
 
     @Override
@@ -88,7 +88,7 @@ public class SqliteTransferRepository implements TransferRepository {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) list.add(mapRow(rs));
             return list;
-        } catch (SQLException e) { throw new RuntimeException("Error finding transfers by status", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar transferencias por estado", e); }
     }
 
     @Override
@@ -98,7 +98,7 @@ public class SqliteTransferRepository implements TransferRepository {
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM transfers ORDER BY creation_date DESC");
             while (rs.next()) list.add(mapRow(rs));
             return list;
-        } catch (SQLException e) { throw new RuntimeException("Error listing transfers", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al listar transferencias", e); }
     }
 
     private Transfer mapRow(ResultSet rs) throws SQLException {

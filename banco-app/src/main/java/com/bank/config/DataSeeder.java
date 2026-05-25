@@ -30,29 +30,29 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (userRepository.existsByIdentificationNumber("ANA001")) { log.info("[SEED] Already seeded."); return; }
+        if (userRepository.existsByIdentificationNumber("DAN001")) { log.info("[SEED] Base de datos ya inicializada."); return; }
         log.info("[SEED] Sembrando datos iniciales...");
-        saveUser("Sarah Johnson",   "ANA001",  "sarah.johnson@bank.com",       "5551234567", LocalDate.of(1985,3,15),  "123 Bank Street",             UserRole.INTERNAL_ANALYST,    "analyst123",    null);
-        saveUser("Mike Thompson",   "TEL001",  "mike.thompson@bank.com",       "5559876543", LocalDate.of(1990,7,22),  "123 Bank Street",             UserRole.TELLER,              "teller123",     null);
-        saveUser("Linda Chen",      "COM001",  "linda.chen@bank.com",          "5554567890", LocalDate.of(1988,11,5),  "123 Bank Street",             UserRole.COMMERCIAL_EMPLOYEE, "commercial123", null);
-        saveUser("John Smith",      "CLI001",  "john.smith@email.com",         "5552345678", LocalDate.of(1992,5,10),  "456 Main Street Apt 3B",      UserRole.CLIENT_INDIVIDUAL,   "client123",     null);
-        saveUser("Maria Garcia",    "CLI002",  "maria.garcia@email.com",       "5556789012", LocalDate.of(1987,9,28),  "789 Oak Avenue Suite 5",      UserRole.CLIENT_INDIVIDUAL,   "client456",     null);
-        saveUser("Robert Williams", "CORP001", "robert.williams@techcorp.com", "5551122334", LocalDate.of(1975,1,20),  "100 Corporate Blvd Floor 10", UserRole.CLIENT_COMPANY,      "company123",    "CORP001");
-        saveUser("Patricia Davis",  "SUP001",  "patricia.davis@techcorp.com",  "5553344556", LocalDate.of(1980,6,12),  "100 Corporate Blvd Floor 10", UserRole.COMPANY_SUPERVISOR,  "supervisor123", "CORP001");
-        saveUser("James Wilson",    "EMP001",  "james.wilson@techcorp.com",    "5554455667", LocalDate.of(1995,3,8),   "100 Corporate Blvd Floor 10", UserRole.COMPANY_EMPLOYEE,    "employee123",   "CORP001");
-        saveAccount("ACC0000000001", AccountType.SAVINGS,  "CLI001",  "15000.00",  "USD");
+        saveUser("Daniel Gonzalez",    "DAN001",  "daniel.gonzalez@bank.com",      "3001234567", LocalDate.of(2000,6,1),   "Calle 10 # 45-20 Medellín",   UserRole.INTERNAL_ANALYST,    "daniel123",     null);
+        saveUser("Carlos Restrepo",    "TEL001",  "carlos.restrepo@bank.com",      "3019876543", LocalDate.of(1992,4,18),  "Carrera 5 # 12-30 Bogotá",    UserRole.TELLER,              "teller123",     null);
+        saveUser("Isabella Gomez",     "ISA001",  "isabella.gomez@bank.com",       "3024567890", LocalDate.of(2001,9,15),  "Avenida El Poblado # 3-50",   UserRole.COMMERCIAL_EMPLOYEE, "isabella123",   null);
+        saveUser("Yorlando Montiel",   "YOR001",  "yorlando.montiel@email.com",    "3032345678", LocalDate.of(1998,3,22),  "Calle 80 # 23-10 Barranquilla",UserRole.CLIENT_INDIVIDUAL,  "yorlando123",   null);
+        saveUser("Valentina Torres",   "CLI002",  "valentina.torres@email.com",    "3046789012", LocalDate.of(1995,11,5),  "Carrera 15 # 88-40 Bogotá",   UserRole.CLIENT_INDIVIDUAL,   "vale123",       null);
+        saveUser("Empresas Andinas",   "CORP001", "contacto@empresasandinas.com",  "6011234567", LocalDate.of(1980,1,10),  "Calle 100 # 15-60 Piso 8",    UserRole.CLIENT_COMPANY,      "empresa123",    "CORP001");
+        saveUser("Alejandro Rios",     "SUP001",  "alejandro.rios@empresas.com",   "3053344556", LocalDate.of(1985,7,25),  "Calle 100 # 15-60 Piso 8",    UserRole.COMPANY_SUPERVISOR,  "supervisor123", "CORP001");
+        saveUser("Mariana Castillo",   "EMP001",  "mariana.castillo@empresas.com", "3064455667", LocalDate.of(1999,2,14),  "Calle 100 # 15-60 Piso 8",    UserRole.COMPANY_EMPLOYEE,    "mariana123",    "CORP001");
+        saveAccount("ACC0000000001", AccountType.SAVINGS,  "YOR001",  "15000.00",  "USD");
         saveAccount("ACC0000000002", AccountType.CHECKING, "CLI002",  "8500.00",   "USD");
         saveAccount("ACC0000000003", AccountType.BUSINESS, "CORP001", "250000.00", "USD");
         log.info("[SEED] ================================================");
         log.info("[SEED] CREDENCIALES DE PRUEBA (POST /api/auth/login):");
-        log.info("[SEED]   Analyst:      ID=ANA001  | Pass=analyst123");
+        log.info("[SEED]   Analyst:      ID=DAN001  | Pass=daniel123");
         log.info("[SEED]   Teller:       ID=TEL001  | Pass=teller123");
-        log.info("[SEED]   Commercial:   ID=COM001  | Pass=commercial123");
-        log.info("[SEED]   Client 1:     ID=CLI001  | Pass=client123   | Acc=ACC0000000001 $15,000");
-        log.info("[SEED]   Client 2:     ID=CLI002  | Pass=client456   | Acc=ACC0000000002 $8,500");
-        log.info("[SEED]   Corp Admin:   ID=CORP001 | Pass=company123  | Acc=ACC0000000003 $250,000");
+        log.info("[SEED]   Commercial:   ID=ISA001  | Pass=isabella123");
+        log.info("[SEED]   Client 1:     ID=YOR001  | Pass=yorlando123  | Acc=ACC0000000001 $15,000");
+        log.info("[SEED]   Client 2:     ID=CLI002  | Pass=vale123      | Acc=ACC0000000002 $8,500");
+        log.info("[SEED]   Corp Admin:   ID=CORP001 | Pass=empresa123   | Acc=ACC0000000003 $250,000");
         log.info("[SEED]   Supervisor:   ID=SUP001  | Pass=supervisor123");
-        log.info("[SEED]   Co. Employee: ID=EMP001  | Pass=employee123");
+        log.info("[SEED]   Co. Employee: ID=EMP001  | Pass=mariana123");
         log.info("[SEED] Swagger UI -> http://localhost:8080/swagger-ui.html");
         log.info("[SEED] H2 Console -> http://localhost:8080/h2-console  (jdbc:h2:mem:bankdb)");
     }

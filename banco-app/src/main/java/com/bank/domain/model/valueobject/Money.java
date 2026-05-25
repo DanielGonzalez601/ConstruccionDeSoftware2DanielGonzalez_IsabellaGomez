@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- * Value Object - Represents a monetary amount with currency.
- * Immutable, handles financial arithmetic safely.
+ * Value Object - representa una cantidad monetaria en moneda.
+ * Immutable, maneja operaciones financieras de forma segura.
  */
 public final class Money {
 

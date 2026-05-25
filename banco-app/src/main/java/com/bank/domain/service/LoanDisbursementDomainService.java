@@ -5,17 +5,17 @@ import com.bank.domain.model.aggregate.BankAccount;
 import com.bank.domain.model.aggregate.Loan;
 
 /**
- * DOMAIN SERVICE - LoanDisbursementDomainService
- *
- * Handles the business logic of disbursing an approved loan into a bank account.
- * Validates cross-aggregate invariants (loan + account ownership).
- */
+* SERVICIO DE DOMINIO - LoanDisbursementDomainService
+*
+* Gestiona la lógica de negocio para el desembolso de un préstamo aprobado en una cuenta bancaria.
+* Valida las invariantes entre agregados (préstamo + titularidad de la cuenta).
+*/
 public class LoanDisbursementDomainService {
 
     /**
-     * Validates that the disbursement account is valid and belongs to the loan client,
-     * then credits the approved amount to the account.
-     */
+    * Valida que la cuenta de desembolso sea válida y pertenezca al cliente del préstamo,
+    * y luego abona el importe aprobado a la cuenta.
+    */
     public void disburse(Loan loan, BankAccount disbursementAccount) {
         if (!disbursementAccount.isActive()) {
             throw new DomainValidationException(
@@ -29,7 +29,7 @@ public class LoanDisbursementDomainService {
         }
         // Trigger state transition in aggregate
         loan.disburse();
-        // Credit funds to account
+        // Abonar fondos a la cuenta
         disbursementAccount.credit(loan.getApprovedAmount());
     }
 }

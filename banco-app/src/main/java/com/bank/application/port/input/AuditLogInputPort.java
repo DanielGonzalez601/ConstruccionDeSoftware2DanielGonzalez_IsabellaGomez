@@ -4,9 +4,9 @@ import com.bank.application.dto.BankingDto.*;
 import java.util.List;
 
 /**
- * APPLICATION INPUT PORT - AuditLogInputPort
- * Defines read operations on the immutable audit log.
- */
+* PUERTO DE ENTRADA DE LA APLICACIÓN - AuditLogInputPort
+* Define las operaciones de lectura en el registro de auditoría inmutable.
+*/
 public interface AuditLogInputPort {
     List<AuditLogResponse> getAllLogs();
     List<AuditLogResponse> getLogsByProductId(String productId);

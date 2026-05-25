@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 /**
  * SHARED UTILITY - AccountNumberGenerator
- * Generates unique account numbers with collision checking.
+ * Genera números de cuenta únicos con verificación de colisiones.
  */
 @Component
 public class AccountNumberGenerator {

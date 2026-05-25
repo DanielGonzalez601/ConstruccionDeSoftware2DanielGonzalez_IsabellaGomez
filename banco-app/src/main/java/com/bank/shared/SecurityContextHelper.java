@@ -11,8 +11,8 @@ import java.util.Arrays;
 /**
  * SHARED UTILITY - SecurityContextHelper
  *
- * Provides convenient access to the authenticated user from the Spring Security context.
- * Used by use cases to enforce role-based access control.
+ * Proporciona acceso conveniente al usuario autenticado desde el contexto de Spring Security.
+ * Se utiliza en casos de uso para aplicar el control de acceso basado en roles.
  */
 public class SecurityContextHelper {
 

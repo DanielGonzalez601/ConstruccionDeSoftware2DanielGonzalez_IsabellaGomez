@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * ADAPTER (Driving) - UserController
- *
- * REST controller for user management operations.
- * Requires JWT authentication.
- */
+* ADAPTADOR (Controlador) - UserController
+*
+* Controlador REST para operaciones de gestión de usuarios.
+* Requiere autenticación JWT.
+*/
 @RestController
 @RequestMapping("/api/users")
-@Tag(name = "Users", description = "User management")
+@Tag(name = "Users", description = "Gestión de usuarios")
 @SecurityRequirement(name = "bearerAuth")
 public class UserController {
 
@@ -31,28 +31,28 @@ public class UserController {
     }
 
     @GetMapping
-    @Operation(summary = "Get all users", description = "INTERNAL_ANALYST only")
+    @Operation(summary = "Obtener todos los usuarios", description = "INTERNAL_ANALYST only")
     public ResponseEntity<ApiResponse<List<UserResponse>>> getAllUsers() {
-        return ResponseEntity.ok(ApiResponse.ok("Users retrieved", userInputPort.getAllUsers()));
+        return ResponseEntity.ok(ApiResponse.ok("Usuarios encontrados.", userInputPort.getAllUsers()));
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get user by ID")
+    @Operation(summary = "Obtener usuario por ID")
     public ResponseEntity<ApiResponse<UserResponse>> getUserById(@PathVariable Long id) {
-        return ResponseEntity.ok(ApiResponse.ok("User found", userInputPort.getUserById(id)));
+        return ResponseEntity.ok(ApiResponse.ok("Usuario encontrado.", userInputPort.getUserById(id)));
     }
 
     @GetMapping("/by-identification/{identificationNumber}")
-    @Operation(summary = "Get user by identification number")
+    @Operation(summary = "Obtener usuario por número de identificación")
     public ResponseEntity<ApiResponse<UserResponse>> getByIdentification(@PathVariable String identificationNumber) {
-        return ResponseEntity.ok(ApiResponse.ok("User found", userInputPort.getUserByIdentification(identificationNumber)));
+        return ResponseEntity.ok(ApiResponse.ok("Usuario encontrado.", userInputPort.getUserByIdentification(identificationNumber)));
     }
 
     @PatchMapping("/{id}/status")
-    @Operation(summary = "Update user status", description = "INTERNAL_ANALYST only. Status: ACTIVE, INACTIVE, BLOCKED")
+    @Operation(summary = "Actualizar estado del usuario", description = "Solo para los INTERNAL_ANALYST. Estados: ACTIVE, INACTIVE, BLOCKED")
     public ResponseEntity<ApiResponse<UserResponse>> updateStatus(
             @PathVariable Long id,
             @Valid @RequestBody UpdateUserStatusCommand command) {
-        return ResponseEntity.ok(ApiResponse.ok("Status updated", userInputPort.updateUserStatus(id, command)));
+        return ResponseEntity.ok(ApiResponse.ok("Estado del usuario actualizado.", userInputPort.updateUserStatus(id, command)));
     }
 }

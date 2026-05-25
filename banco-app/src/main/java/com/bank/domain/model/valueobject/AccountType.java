@@ -1,7 +1,7 @@
 package com.bank.domain.model.valueobject;
 
 /**
- * Value Object - Represents the type of a bank account.
+ * Value Object - representa el tipo de cuenta bancaria.
  */
 public enum AccountType {
     SAVINGS("Savings"),

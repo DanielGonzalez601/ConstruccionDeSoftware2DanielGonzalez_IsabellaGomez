@@ -5,7 +5,7 @@ import com.bank.domain.exception.InvalidEmailException;
 import java.util.Objects;
 
 /**
- * Value Object - Represents a validated email address.
+ * Value Object - representa una dirección de correo electrónico validada.
  * Immutable by design (no setters, final fields).
  */
 public final class Email {

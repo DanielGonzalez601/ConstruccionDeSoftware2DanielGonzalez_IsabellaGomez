@@ -14,9 +14,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 /**
- * CONFIG - JwtTokenProvider
- * Handles JWT token parsing and validation.
- */
+* CONFIG - JwtTokenProvider
+* Gestiona el análisis y la validación de tokens JWT.
+*/
 @Component
 public class JwtTokenProvider {
 

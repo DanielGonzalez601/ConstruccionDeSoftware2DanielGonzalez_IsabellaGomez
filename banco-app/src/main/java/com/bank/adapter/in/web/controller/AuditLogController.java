@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * ADAPTER (Driving) - AuditLogController
- * REST controller for read-only access to the immutable audit log.
- */
+* ADAPTADOR (Controlador) - AuditLogController
+* Controlador REST para acceso de solo lectura al registro de auditoría inmutable.
+*/
 @RestController
 @RequestMapping("/api/audit-log")
-@Tag(name = "Audit Log", description = "Immutable operation log (NoSQL documents)")
+@Tag(name = "Audit Log", description = "Registro de operaciones inmutable (NoSQL documents)")
 @SecurityRequirement(name = "bearerAuth")
 public class AuditLogController {
 
@@ -27,20 +27,20 @@ public class AuditLogController {
     }
 
     @GetMapping
-    @Operation(summary = "Get all audit log entries", description = "INTERNAL_ANALYST only")
+    @Operation(summary = "Obtenga todas las entradas del registro de auditoría.", description = "INTERNAL_ANALYST only")
     public ResponseEntity<ApiResponse<List<AuditLogResponse>>> getAllLogs() {
-        return ResponseEntity.ok(ApiResponse.ok("Audit log retrieved", auditLogInputPort.getAllLogs()));
+        return ResponseEntity.ok(ApiResponse.ok("Registro de auditoría recuperado.", auditLogInputPort.getAllLogs()));
     }
 
     @GetMapping("/product/{productId}")
-    @Operation(summary = "Get audit logs by affected product ID (account number, loan ID, transfer ID)")
+    @Operation(summary = "Obtenga los registros de auditoría por ID de producto afectado (número de cuenta, ID de préstamo, ID de transferencia).")
     public ResponseEntity<ApiResponse<List<AuditLogResponse>>> getByProduct(@PathVariable String productId) {
-        return ResponseEntity.ok(ApiResponse.ok("Logs retrieved", auditLogInputPort.getLogsByProductId(productId)));
+        return ResponseEntity.ok(ApiResponse.ok("Registros recuperados.", auditLogInputPort.getLogsByProductId(productId)));
     }
 
     @GetMapping("/user/{userId}")
-    @Operation(summary = "Get audit logs by user ID", description = "INTERNAL_ANALYST only")
+    @Operation(summary = "Obtenga los registros de auditoría por ID de usuario", description = "INTERNAL_ANALYST only")
     public ResponseEntity<ApiResponse<List<AuditLogResponse>>> getByUser(@PathVariable Long userId) {
-        return ResponseEntity.ok(ApiResponse.ok("Logs retrieved", auditLogInputPort.getLogsByUserId(userId)));
+        return ResponseEntity.ok(ApiResponse.ok("Registros recuperados.", auditLogInputPort.getLogsByUserId(userId)));
     }
 }

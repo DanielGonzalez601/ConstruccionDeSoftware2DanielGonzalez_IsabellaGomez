@@ -4,9 +4,9 @@ import com.bank.application.dto.BankingDto.*;
 import java.util.List;
 
 /**
- * APPLICATION INPUT PORT - AccountInputPort
- * Defines account operations exposed to the interface layer.
- */
+* PUERTO DE ENTRADA DE LA APLICACIÓN - AccountInputPort
+* Define las operaciones de cuenta expuestas a la capa de interfaz.
+*/
 public interface AccountInputPort {
     AccountResponse openAccount(OpenAccountCommand command);
     AccountResponse getAccount(String accountNumber);

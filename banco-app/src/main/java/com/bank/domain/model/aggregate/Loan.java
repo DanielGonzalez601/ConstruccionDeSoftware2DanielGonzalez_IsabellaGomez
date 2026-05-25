@@ -8,11 +8,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * DOMAIN AGGREGATE ROOT - Loan
- *
- * Manages the entire lifecycle of a loan from request to disbursement.
- * Enforces all state transitions and business rules.
- */
+* RAÍZ DE AGREGADO DE DOMINIO - Préstamo
+*
+* Gestiona todo el ciclo de vida de un préstamo, desde la solicitud hasta el desembolso.
+* Aplica todas las transiciones de estado y las reglas de negocio.
+*/
 public class Loan {
 
     private Long id;
@@ -32,8 +32,8 @@ public class Loan {
     private Loan() {}
 
     /**
-     * Reconstitution factory — restores a Loan from persistence WITHOUT running invariant checks.
-     * Used ONLY by the persistence mapper.
+     * Fábrica de reconstitución: restaura un préstamo desde la persistencia SIN ejecutar verificaciones de invariantes.
+     * Utilizado ÚNICAMENTE por el mapeador de persistencia.
      */
     public static Loan reconstitute(Long id, String clientId, String loanType,
                                      Money requestedAmount, Money approvedAmount,
@@ -59,7 +59,7 @@ public class Loan {
     }
 
     /**
-     * Domain factory — creates a new loan request in UNDER_REVIEW status.
+     * Fábrica de dominio: crea una nueva solicitud de préstamo en estado UNDER_REVIEW.
      */
     public static Loan request(String clientId, String loanType, Money requestedAmount,
                                 int termMonths, String disbursementAccountNumber, Long creatorUserId) {
@@ -83,11 +83,11 @@ public class Loan {
         return loan;
     }
 
-    // ============ Business Rules / State Transitions ============
+    // ============ Reglas de negocio / Transiciones de estado ============
 
     public void approve(Money approvedAmount, BigDecimal interestRate, int termMonths, Long analystUserId) {
         if (this.status != LoanStatus.UNDER_REVIEW)
-            throw new InvalidLoanStateTransitionException("Loan can only be approved from UNDER_REVIEW state. Current: " + this.status);
+            throw new InvalidLoanStateTransitionException("El préstamo solo se puede aprobar desde el estado UNDER_REVIEW. Actual: " + this.status);
         if (approvedAmount == null || approvedAmount.isZeroOrNegative())
             throw new DomainValidationException("Se requiere monto aprobado positivo.");
         if (interestRate == null || interestRate.compareTo(BigDecimal.ZERO) <= 0)

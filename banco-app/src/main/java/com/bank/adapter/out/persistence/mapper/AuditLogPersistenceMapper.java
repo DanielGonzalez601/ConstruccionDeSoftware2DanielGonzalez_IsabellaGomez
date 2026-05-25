@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * INFRASTRUCTURE MAPPER - AuditLogPersistenceMapper
- *
- * Serializes/deserializes the detailData Map to/from JSON string.
- * This simulates the NoSQL "document" behavior within a relational database.
- */
+* MAPEO DE INFRAESTRUCTURA - Mapeo de persistencia de registro de auditoría
+*
+* Serializa/deserializa el mapa detailData a/desde una cadena JSON.
+* Esto simula el comportamiento de "documento" NoSQL dentro de una base de datos relacional.
+*/
 @Component
 public class AuditLogPersistenceMapper {
 

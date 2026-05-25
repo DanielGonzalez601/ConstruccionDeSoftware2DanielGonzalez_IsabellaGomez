@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * APPLICATION OUTPUT PORT - LoanRepositoryPort
- * Abstracts persistence for the Loan aggregate.
- */
+* PUERTO DE SALIDA DE LA APLICACIÓN - LoanRepositoryPort
+* Abstrae la persistencia para el agregado de préstamos.
+*/
 public interface LoanRepositoryPort {
     Loan save(Loan loan);
     Optional<Loan> findById(Long id);

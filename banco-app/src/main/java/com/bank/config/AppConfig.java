@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration;
 import java.math.BigDecimal;
 
 /**
- * CONFIG - AppConfig
- *
- * Wires domain services as Spring beans.
- * Domain services are pure Java — they just need their parameters injected here.
- */
+* CONFIG - AppConfig
+*
+* Conecta los servicios de dominio como beans de Spring.
+* Los servicios de dominio son Java puro; solo necesitan que se inyecten sus parámetros aquí.
+*/
 @Configuration
 @EnableConfigurationProperties(ApplicationProperties.class)
 public class AppConfig {

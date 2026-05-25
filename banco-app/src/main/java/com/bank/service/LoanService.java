@@ -33,20 +33,20 @@ public class LoanService {
 
         if (current.hasRole(UserRole.CLIENT_INDIVIDUAL, UserRole.CLIENT_COMPANY)) {
             if (!current.isOwner(clientId))
-                throw new DomainException("Clients can only request loans for themselves.");
+                throw new DomainException("Los clientes solo pueden solicitar préstamos por sí mismos.");
         }
 
         User client = userRepo.findByIdentification(clientId)
-            .orElseThrow(() -> new DomainException("Client not found: " + clientId));
+            .orElseThrow(() -> new DomainException("Cliente no encontrado: " + clientId));
         if (!client.isOperational())
-            throw new DomainException("Client is not ACTIVE. Cannot request a loan.");
+            throw new DomainException("El cliente no está activo. No se puede solicitar un préstamo.");
 
         Loan loan = Loan.request(clientId, loanType,
                 new Money(requestedAmount, "USD"), termMonths, disbursementAccount, current.getUserId());
 
         loanRepo.save(loan);
         eventPublisher.publishAll(loan.pullDomainEvents());
-        System.out.println("[LOAN] Request submitted. ID: " + loan.getLoanId() + " | Status: UNDER_REVIEW");
+        System.out.println("[LOAN] Solicitud enviada.. ID: " + loan.getLoanId() + " | Estado: UNDER_REVIEW");
         return loan;
     }
 
@@ -59,7 +59,7 @@ public class LoanService {
 
         loanRepo.save(loan);
         eventPublisher.publishAll(loan.pullDomainEvents());
-        System.out.println("[LOAN] Loan " + loanId + " APPROVED. Amount: " + approvedAmount);
+        System.out.println("[LOAN] Préstamo " + loanId + " APROBADO. Cantidad: " + approvedAmount);
         return loan;
     }
 
@@ -72,7 +72,7 @@ public class LoanService {
 
         loanRepo.save(loan);
         eventPublisher.publishAll(loan.pullDomainEvents());
-        System.out.println("[LOAN] Loan " + loanId + " REJECTED.");
+        System.out.println("[LOAN] Préstamo " + loanId + " RECHAZADO.");
         return loan;
     }
 
@@ -83,12 +83,12 @@ public class LoanService {
         Loan loan = loadLoan(loanId);
 
         BankAccount disbAccount = accountRepo.findByAccountNumber(loan.getDisbursementAccountNumber())
-            .orElseThrow(() -> new DomainException("Disbursement account not found: " + loan.getDisbursementAccountNumber()));
+            .orElseThrow(() -> new DomainException("Cuenta de desembolso no encontrada: " + loan.getDisbursementAccountNumber()));
 
         if (disbAccount.getStatus() != AccountStatus.ACTIVE)
-            throw new DomainException("Disbursement account is not ACTIVE.");
+            throw new DomainException("La cuenta de desembolso no está activa.");
         if (!disbAccount.getOwnerId().equals(loan.getClientId()))
-            throw new DomainException("Disbursement account does not belong to the loan client.");
+            throw new DomainException("La cuenta de desembolso no pertenece al cliente del préstamo.");
 
         loan.markAsDisbursed(analyst.getUserId());
         disbAccount.deposit(loan.getApprovedAmount());
@@ -98,7 +98,7 @@ public class LoanService {
         eventPublisher.publishAll(loan.pullDomainEvents());
         eventPublisher.publishAll(disbAccount.pullDomainEvents());
 
-        System.out.printf("[LOAN] Loan %d DISBURSED. Amount: %s credited to %s%n",
+        System.out.printf("[LOAN] Préstamo %d DISPERSADO. Cantidad: %s acreditado a %s%n",
                 loanId, loan.getApprovedAmount(), disbAccount.getAccountNumber());
         return loan;
     }
@@ -108,7 +108,7 @@ public class LoanService {
         User current = AuthService.getCurrentUser();
         if (current.hasRole(UserRole.CLIENT_INDIVIDUAL, UserRole.CLIENT_COMPANY)) {
             if (!current.isOwner(clientId))
-                throw new DomainException("You can only view your own loans.");
+                throw new DomainException("Solo puedes ver tus propios préstamos.");
         }
         return loanRepo.findByClientId(clientId);
     }
@@ -125,6 +125,6 @@ public class LoanService {
 
     private Loan loadLoan(int loanId) {
         return loanRepo.findById(loanId)
-            .orElseThrow(() -> new DomainException("Loan not found: " + loanId));
+            .orElseThrow(() -> new DomainException("Préstamo no encontrado: " + loanId));
     }
 }

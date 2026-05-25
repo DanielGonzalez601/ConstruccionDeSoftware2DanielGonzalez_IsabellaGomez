@@ -7,13 +7,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * ADAPTER (Driving) - TransferExpiryScheduler
- *
- * Periodically checks for transfers that have been pending approval for
- * more than 60 minutes and expires them automatically.
- *
- * This is a driving adapter — it triggers the use case just like a REST controller would.
- */
+* ADAPTADOR (Controlador) - TransferExpiryScheduler
+*
+* Comprueba periódicamente si hay transferencias pendientes de aprobación durante
+* más de 60 minutos y las cancela automáticamente.
+*
+* Este es un adaptador controlador: activa el caso de uso como lo haría un controlador REST.
+*/
 @Component
 public class TransferExpiryScheduler {
 
@@ -25,7 +25,7 @@ public class TransferExpiryScheduler {
         this.transferInputPort = transferInputPort;
     }
 
-    // Runs every 5 minutes
+    // Se ejecuta cada 5 minutos
     @Scheduled(fixedDelay = 300_000)
     public void expireStaleTransfers() {
         int expired = transferInputPort.processExpiredTransfers();

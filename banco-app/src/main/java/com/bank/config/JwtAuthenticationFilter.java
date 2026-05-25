@@ -19,12 +19,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * CONFIG - JwtAuthenticationFilter
- *
- * Intercepts every request, extracts the JWT token from the Authorization header,
- * validates it, loads the full User domain entity, and sets it as the
- * Spring Security principal. This makes getCurrentUser() work in use cases.
- */
+* CONFIG - JwtAuthenticationFilter
+*
+* Intercepta cada solicitud, extrae el token JWT del encabezado Authorization,
+* lo valida, carga la entidad completa del dominio User y la establece como el
+* principal de Spring Security. Esto permite que getCurrentUser() funcione en los casos de uso.
+*/
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

@@ -52,7 +52,7 @@ public class SqliteUserRepository implements UserRepository {
                 ps.executeUpdate();
             }
             return user;
-        } catch (SQLException e) { throw new RuntimeException("Error saving user", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al guardar el usuario", e); }
     }
 
     @Override
@@ -63,7 +63,7 @@ public class SqliteUserRepository implements UserRepository {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) return Optional.of(mapRow(rs));
             return Optional.empty();
-        } catch (SQLException e) { throw new RuntimeException("Error finding user", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar el usuario", e); }
     }
 
     @Override
@@ -74,7 +74,7 @@ public class SqliteUserRepository implements UserRepository {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) return Optional.of(mapRow(rs));
             return Optional.empty();
-        } catch (SQLException e) { throw new RuntimeException("Error finding user", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar el usuario", e); }
     }
 
     @Override
@@ -84,7 +84,7 @@ public class SqliteUserRepository implements UserRepository {
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM users");
             while (rs.next()) list.add(mapRow(rs));
             return list;
-        } catch (SQLException e) { throw new RuntimeException("Error listing users", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al listar usuarios", e); }
     }
 
     @Override
@@ -96,7 +96,7 @@ public class SqliteUserRepository implements UserRepository {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) list.add(mapRow(rs));
             return list;
-        } catch (SQLException e) { throw new RuntimeException("Error finding users by company", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar usuarios por compañía", e); }
     }
 
     @Override
@@ -106,7 +106,7 @@ public class SqliteUserRepository implements UserRepository {
             ps.setString(1, idNumber);
             ResultSet rs = ps.executeQuery();
             return rs.next() && rs.getInt(1) > 0;
-        } catch (SQLException e) { throw new RuntimeException("Error checking user existence", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al verificar existencia del usuario", e); }
     }
 
     private User mapRow(ResultSet rs) throws SQLException {

@@ -23,7 +23,7 @@ public class SqliteLoanRepository implements LoanRepository {
         try {
             if (loan.getLoanId() == 0) insert(loan); else update(loan);
         } catch (SQLException e) {
-            throw new RuntimeException("Error saving loan", e);
+            throw new RuntimeException("Error al guardar el préstamo", e);
         }
     }
 
@@ -78,7 +78,7 @@ public class SqliteLoanRepository implements LoanRepository {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) return Optional.of(mapRow(rs));
             return Optional.empty();
-        } catch (SQLException e) { throw new RuntimeException("Error finding loan", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar el préstamo", e); }
     }
 
     @Override
@@ -90,7 +90,7 @@ public class SqliteLoanRepository implements LoanRepository {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) list.add(mapRow(rs));
             return list;
-        } catch (SQLException e) { throw new RuntimeException("Error finding loans", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar préstamos", e); }
     }
 
     @Override
@@ -102,7 +102,7 @@ public class SqliteLoanRepository implements LoanRepository {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) list.add(mapRow(rs));
             return list;
-        } catch (SQLException e) { throw new RuntimeException("Error finding loans by status", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al buscar préstamos por estado", e); }
     }
 
     @Override
@@ -112,7 +112,7 @@ public class SqliteLoanRepository implements LoanRepository {
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM loans");
             while (rs.next()) list.add(mapRow(rs));
             return list;
-        } catch (SQLException e) { throw new RuntimeException("Error listing loans", e); }
+        } catch (SQLException e) { throw new RuntimeException("Error al listar préstamos", e); }
     }
 
     private Loan mapRow(ResultSet rs) throws SQLException {

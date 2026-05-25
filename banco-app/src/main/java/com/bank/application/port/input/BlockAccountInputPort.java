@@ -1,9 +1,9 @@
 package com.bank.application.port.input;
 
-/**
- * INPUT PORT - Block Account
- * Define el contrato para bloquear cuentas
- */
+/** 
+* PUERTO DE ENTRADA - Bloquear cuenta 
+* Definir el contrato para bloquear cuentas 
+*/
 public interface BlockAccountInputPort {
     void blockAccount(String accountNumber);
 }

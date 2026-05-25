@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * ADAPTER (Driving) - AccountController
- * REST controller for bank account operations.
- */
+* ADAPTADOR (Controlador) - AccountController
+* Controlador REST para operaciones de cuentas bancarias.
+*/
 @RestController
 @RequestMapping("/api/accounts")
-@Tag(name = "Accounts", description = "Bank account operations")
+@Tag(name = "Accounts", description = "Operaciones de cuentas bancarias")
 @SecurityRequirement(name = "bearerAuth")
 public class AccountController {
 
@@ -28,61 +28,61 @@ public class AccountController {
     }
 
     @PostMapping
-    @Operation(summary = "Open a new account",
+    @Operation(summary = "Abrir una nueva cuenta",
         description = "Roles: TELLER, COMMERCIAL_EMPLOYEE, INTERNAL_ANALYST, CLIENT_INDIVIDUAL, CLIENT_COMPANY")
     public ResponseEntity<ApiResponse<AccountResponse>> openAccount(
             @Valid @RequestBody OpenAccountCommand command) {
         return ResponseEntity.status(201)
-            .body(ApiResponse.ok("Account opened successfully", accountInputPort.openAccount(command)));
+            .body(ApiResponse.ok("Cuenta abierta con éxito.", accountInputPort.openAccount(command)));
     }
 
     @GetMapping
-    @Operation(summary = "Get all accounts", description = "Roles: INTERNAL_ANALYST, TELLER, COMMERCIAL_EMPLOYEE")
+    @Operation(summary = "Obtener todas las cuentas", description = "Roles: INTERNAL_ANALYST, TELLER, COMMERCIAL_EMPLOYEE")
     public ResponseEntity<ApiResponse<List<AccountResponse>>> getAllAccounts() {
-        return ResponseEntity.ok(ApiResponse.ok("Accounts retrieved", accountInputPort.getAllAccounts()));
+        return ResponseEntity.ok(ApiResponse.ok("Cuentas encontradas.", accountInputPort.getAllAccounts()));
     }
 
     @GetMapping("/{accountNumber}")
-    @Operation(summary = "Get account by number")
+    @Operation(summary = "Obtener cuenta por número")
     public ResponseEntity<ApiResponse<AccountResponse>> getAccount(@PathVariable String accountNumber) {
-        return ResponseEntity.ok(ApiResponse.ok("Account found", accountInputPort.getAccount(accountNumber)));
+        return ResponseEntity.ok(ApiResponse.ok("Cuenta encontrada.", accountInputPort.getAccount(accountNumber)));
     }
 
     @GetMapping("/owner/{ownerIdentificationNumber}")
-    @Operation(summary = "Get accounts by owner identification number")
+    @Operation(summary = "Obtener cuentas por número de identificación del propietario")
     public ResponseEntity<ApiResponse<List<AccountResponse>>> getByOwner(
             @PathVariable String ownerIdentificationNumber) {
-        return ResponseEntity.ok(ApiResponse.ok("Accounts retrieved",
+        return ResponseEntity.ok(ApiResponse.ok("Cuentas encontradas.",
             accountInputPort.getAccountsByOwner(ownerIdentificationNumber)));
     }
 
     @PostMapping("/{accountNumber}/deposit")
-    @Operation(summary = "Deposit money", description = "Roles: TELLER, INTERNAL_ANALYST")
+    @Operation(summary = "Depositar dinero", description = "Roles: TELLER, INTERNAL_ANALYST")
     public ResponseEntity<ApiResponse<AccountResponse>> deposit(
             @PathVariable String accountNumber,
             @Valid @RequestBody DepositWithdrawCommand command) {
-        return ResponseEntity.ok(ApiResponse.ok("Deposit successful",
+        return ResponseEntity.ok(ApiResponse.ok("Depósito exitoso.",
             accountInputPort.deposit(accountNumber, command)));
     }
 
     @PostMapping("/{accountNumber}/withdraw")
-    @Operation(summary = "Withdraw money", description = "Roles: TELLER, INTERNAL_ANALYST")
+    @Operation(summary = "Retirar dinero", description = "Roles: TELLER, INTERNAL_ANALYST")
     public ResponseEntity<ApiResponse<AccountResponse>> withdraw(
             @PathVariable String accountNumber,
             @Valid @RequestBody DepositWithdrawCommand command) {
-        return ResponseEntity.ok(ApiResponse.ok("Withdrawal successful",
+        return ResponseEntity.ok(ApiResponse.ok("Retiro exitoso.",
             accountInputPort.withdraw(accountNumber, command)));
     }
 
     @PatchMapping("/{accountNumber}/block")
-    @Operation(summary = "Block an account", description = "INTERNAL_ANALYST only")
+    @Operation(summary = "Bloquear una cuenta", description = "INTERNAL_ANALYST only")
     public ResponseEntity<ApiResponse<AccountResponse>> blockAccount(@PathVariable String accountNumber) {
-        return ResponseEntity.ok(ApiResponse.ok("Account blocked", accountInputPort.blockAccount(accountNumber)));
+        return ResponseEntity.ok(ApiResponse.ok("Cuenta bloqueada.", accountInputPort.blockAccount(accountNumber)));
     }
 
     @PatchMapping("/{accountNumber}/unblock")
-    @Operation(summary = "Unblock an account", description = "INTERNAL_ANALYST only")
+    @Operation(summary = "Desbloquear una cuenta", description = "INTERNAL_ANALYST only")
     public ResponseEntity<ApiResponse<AccountResponse>> unblockAccount(@PathVariable String accountNumber) {
-        return ResponseEntity.ok(ApiResponse.ok("Account unblocked", accountInputPort.unblockAccount(accountNumber)));
+        return ResponseEntity.ok(ApiResponse.ok("Cuenta desbloqueada.", accountInputPort.unblockAccount(accountNumber)));
     }
 }

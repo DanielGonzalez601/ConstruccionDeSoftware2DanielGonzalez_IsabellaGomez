@@ -7,10 +7,10 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
 /**
- * APPLICATION LAYER - DTOs
- * Simple data containers to carry data between layers.
- * They shield the domain from external formats (JSON, HTTP, etc.).
- */
+* CAPA DE APLICACIÓN - DTOs
+* Contenedores de datos simples para transferir datos entre capas.
+* Protegen el dominio de formatos externos (JSON, HTTP, etc.).
+*/
 public class UserDto {
 
     // ─── Commands (Input) ───────────────────────────────────────────────

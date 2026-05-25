@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.time.Period;
 
 /**
- * DOMAIN ENTITY - User
- *
- * Represents any user of the system (client individual, company, employee, etc.).
- * This is the core domain entity — it contains identity and business rules.
- * It has NO dependency on Spring, JPA, or any framework.
- */
+* ENTIDAD DE DOMINIO - Usuario
+*
+* Representa a cualquier usuario del sistema (cliente individual, empresa, empleado, etc.).
+* Esta es la entidad de dominio principal: contiene la identidad y las reglas de negocio.
+* No tiene ninguna dependencia de Spring, JPA ni de ningún otro framework.
+*/
 public class User {
 
     private Long id;
@@ -32,8 +32,8 @@ public class User {
     private User() {}
 
     /**
-     * Reconstitution factory — restores a User from persistence WITHOUT re-running invariants.
-     * Used ONLY by the persistence mapper.
+     * Reconstitution factory — Restaura un usuario desde la persistencia SIN volver a ejecutar las invariantes.
+    * Utilizado ÚNICAMENTE por el mapeador de persistencia. 
      */
     public static User reconstitute(Long id, String relatedEntityId, String fullName,
                                      String identificationNumber, String email, String phone,
@@ -57,7 +57,7 @@ public class User {
     }
 
     /**
-     * Domain factory method — enforces all business invariants on creation.
+     * Método de fábrica de dominio: garantiza que se cumplan todas las invariantes de negocio en el momento de la creación.
      */
     public static User create(String fullName, String identificationNumber,
                                String email, String phone, LocalDate birthDate,
@@ -74,7 +74,7 @@ public class User {
         return user;
     }
 
-    // ============ Business Rules ============
+    // ============ Reglas de negocio ============
 
     public boolean isActive() {
         return this.status == UserStatus.ACTIVE;

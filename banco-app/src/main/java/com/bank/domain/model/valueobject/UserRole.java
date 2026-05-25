@@ -1,8 +1,8 @@
 package com.bank.domain.model.valueobject;
 
 /**
- * Value Object - Represents the role of a user in the system.
- * Defines what operations each user can perform.
+ * Value Object - representa el rol de un usuario en el sistema.
+ * Define las operaciones que cada usuario puede realizar.
  */
 public enum UserRole {
     CLIENT_INDIVIDUAL("Client - Individual Person"),

@@ -5,7 +5,7 @@ import com.bank.domain.exception.DomainValidationException;
 import java.util.Objects;
 
 /**
- * Value Object - Represents a validated phone number.
+ * Value Object - representa un número de teléfono validado.
  * Immutable, validated on construction.
  */
 public final class PhoneNumber {

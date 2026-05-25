@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * APPLICATION OUTPUT PORT - BankAccountRepositoryPort
- * Abstracts persistence for the BankAccount aggregate.
- */
+* PUERTO DE SALIDA DE LA APLICACIÓN - BankAccountRepositoryPort
+* Abstrae la persistencia para el agregado BankAccount.
+*/
 public interface BankAccountRepositoryPort {
     BankAccount save(BankAccount account);
     Optional<BankAccount> findByAccountNumber(String accountNumber);

@@ -4,9 +4,9 @@ import com.bank.application.dto.BankingDto.*;
 import java.util.List;
 
 /**
- * APPLICATION INPUT PORT - LoanInputPort
- * Defines loan lifecycle operations.
- */
+* PUERTO DE ENTRADA DE LA APLICACIÓN - LoanInputPort
+* Define las operaciones del ciclo de vida del préstamo.
+*/
 public interface LoanInputPort {
     LoanResponse requestLoan(RequestLoanCommand command);
     LoanResponse approveLoan(Long loanId, ApproveLoanCommand command);

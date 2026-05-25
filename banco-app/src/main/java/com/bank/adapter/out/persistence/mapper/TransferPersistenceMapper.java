@@ -6,9 +6,9 @@ import com.bank.domain.model.valueobject.Money;
 import org.springframework.stereotype.Component;
 
 /**
- * INFRASTRUCTURE MAPPER - TransferPersistenceMapper
- * Uses Transfer.reconstitute() to restore from DB — preserves any persisted status.
- */
+* MAPEO DE INFRAESTRUCTURA - TransferPersistenceMapper
+* Utiliza Transfer.reconstitute() para restaurar desde la base de datos; conserva cualquier estado persistido.
+*/
 @Component
 public class TransferPersistenceMapper {
 

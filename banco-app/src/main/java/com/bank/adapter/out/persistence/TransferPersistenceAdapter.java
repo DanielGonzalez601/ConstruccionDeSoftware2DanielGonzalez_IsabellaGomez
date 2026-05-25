@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * INFRASTRUCTURE ADAPTER - TransferPersistenceAdapter
- * Implements TransferRepositoryPort using Spring Data JPA.
- */
+* ADAPTADOR DE INFRAESTRUCTURA - TransferPersistenceAdapter
+* Implementa TransferRepositoryPort usando Spring Data JPA.
+*/
 @Component
 public class TransferPersistenceAdapter implements TransferRepositoryPort {
 
